@@ -29,8 +29,8 @@ module.exports = {
 
         // what about if the parent is an ArrowFunctionExpression
         // would that imply an implicit return?
-
-        if (context.getAncestors().some(isInsideCallback)) {
+        const { sourceCode } = context;
+        if (sourceCode.getAncestors(node).some(isInsideCallback)) {
           context.report({
             node: node.callee,
             message: 'Avoid using promises inside of callbacks.',

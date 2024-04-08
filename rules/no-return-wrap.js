@@ -10,8 +10,9 @@ const getDocsUrl = require('./lib/get-docs-url')
 const isPromise = require('./lib/is-promise')
 
 function isInPromise(context) {
-  let functionNode = context
-    .getAncestors()
+  const {sourceCode} = context;
+  let functionNode = sourceCode
+    .getAncestors(node)
     .filter((node) => {
       return (
         node.type === 'ArrowFunctionExpression' ||

@@ -19,8 +19,9 @@ module.exports = {
   },
   create(context) {
     /** Returns true if node is inside yield or await expression. */
-    function isInsideYieldOrAwait() {
-      return context.getAncestors().some((parent) => {
+    function isInsideYieldOrAwait(node) {
+      const { sourceCode } = context;
+      return sourceCode.getAncestors(node).some((parent) => {
         return (
           parent.type === 'AwaitExpression' || parent.type === 'YieldExpression'
         )

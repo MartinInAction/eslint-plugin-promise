@@ -61,7 +61,8 @@ module.exports = {
           }
           return
         }
-        if (context.getAncestors().some(isInsidePromise)) {
+        const { sourceCode } = context;
+        if (sourceCode.getAncestors(node).some(isInsidePromise)) {
           context.report({
             node,
             messageId: 'callback',

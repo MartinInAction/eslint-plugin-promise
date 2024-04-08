@@ -21,8 +21,9 @@ module.exports = {
         context.report({ node: lastParam, messageId: 'error' })
       }
     }
-    function isInsideYieldOrAwait() {
-      return context.getAncestors().some((parent) => {
+    function isInsideYieldOrAwait(node) {
+      const { sourceCode } = context;
+      return sourceCode.getAncestors(node).some((parent) => {
         return (
           parent.type === 'AwaitExpression' || parent.type === 'YieldExpression'
         )
