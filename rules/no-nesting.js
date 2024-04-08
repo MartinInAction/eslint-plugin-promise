@@ -41,7 +41,7 @@ module.exports = {
     return {
       ':function'(node) {
         if (isInsidePromise(node)) {
-          callbackScopes.unshift(context.getScope())
+          callbackScopes.unshift(context.sourceCode.getScope(node))
         }
       },
       ':function:exit'(node) {

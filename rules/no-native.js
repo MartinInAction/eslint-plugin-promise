@@ -46,7 +46,7 @@ module.exports = {
      */
     return {
       'Program:exit'() {
-        const scope = context.getScope()
+        const scope = context.sourceCode.getScope(node)
         const leftToBeResolved =
           scope.implicit.left ||
           /**

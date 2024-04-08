@@ -400,7 +400,7 @@ module.exports = {
           (node) => node && node.type === 'Identifier'
         )
         for (const resolver of resolvers) {
-          const variable = context.getScope().set.get(resolver.name)
+          const variable = context.sourceCode.getScope(node).set.get(resolver.name)
           // istanbul ignore next -- Usually always present.
           if (!variable) continue
           for (const reference of variable.references) {

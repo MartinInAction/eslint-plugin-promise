@@ -34,7 +34,7 @@ module.exports = {
      * only within function declarations.
      */
     function isTopLevelScoped() {
-      return context.getScope().block.type === 'Program'
+      return context.sourceCode.getScope(node).block.type === 'Program'
     }
 
     return {
