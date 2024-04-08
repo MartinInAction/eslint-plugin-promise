@@ -9,10 +9,10 @@
 const getDocsUrl = require('./lib/get-docs-url')
 const isPromise = require('./lib/is-promise')
 
-function isInPromise(context) {
+function isInPromise(context, _node) {
   const {sourceCode} = context;
   let functionNode = sourceCode
-    .getAncestors(node)
+    .getAncestors(_node)
     .filter((node) => {
       return (
         node.type === 'ArrowFunctionExpression' ||
@@ -71,7 +71,7 @@ module.exports = {
      */
     function checkCallExpression({ callee }, node) {
       if (
-        isInPromise(context) &&
+        isInPromise(context, node) &&
         callee.type === 'MemberExpression' &&
         callee.object.name === 'Promise'
       ) {
